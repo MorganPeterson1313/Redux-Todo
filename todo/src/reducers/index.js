@@ -1,5 +1,5 @@
 
-import{ADD_NEW_TASK}from "../Actions";
+import{ADD_NEW_TASK, TOGGLE_TASK} from "../Actions";
 
 
 const initialState = {
@@ -11,8 +11,27 @@ const initialState = {
 ]
 };
 
+
 function reducer(state = initialState, action) {
+    console.log("reducer action payload and task", state , action.payload)
     switch (action.type) {
+        case TOGGLE_TASK:
+            return {
+                ...state,
+                value: state.todos.map(( index, task) =>
+                
+                task.completed === false
+                ? [ ...state, {completed: action.payload}]
+               
+
+                
+                : null
+                )
+
+
+            };
+           
+
         case ADD_NEW_TASK:
                 return {
                     ...state,
